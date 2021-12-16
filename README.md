@@ -15,5 +15,5 @@ machine.
 The end goal: to run these on a website, hence why they are split.
 
 # Example Commands:
-> python bookmark_data_to_text.py
-> python doc_to_docx.py
+- python bookmark_data_to_text.py
+- python doc_to_docx.py
