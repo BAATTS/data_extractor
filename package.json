@@ -1,0 +1,23 @@
+{
+  "name": "data_extractor",
+  "version": "1.0.0",
+  "description": "Extract bookmark data from doc files",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BAATTS/data_extractor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BAATTS/data_extractor/issues"
+  },
+  "homepage": "https://github.com/BAATTS/data_extractor#readme",
+  "dependencies": {
+    "@microsoft/office-js": "^1.1.73",
+    "express": "^4.17.2"
+  }
+}
