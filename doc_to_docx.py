@@ -7,7 +7,8 @@ from bookmark_data_to_text import bookmark_data_to_text
 
 
 # Create list of paths to .doc files
-paths = glob('I:\\PycharmProjects\\data_extractor\\files\\*.doc', recursive=True)
+paths = glob('I:\\PycharmProjects\\data_extractor\\files\\*.doc',
+             recursive=True)
 
 for files in paths:
     if files.endswith('.doc'):
