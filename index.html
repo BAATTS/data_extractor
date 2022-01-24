@@ -6,19 +6,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
     <title>Bookmark Extractor</title>
 </head>
 
 <body>
     <div class="upload-form-container">
         <h1>Upload Word Document</h1>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-            <input type="fileupload" name="file">
-            <button id="upload-button" type="submit" name="submit">Upload</button>
-        </form>
+        <input id="file" type="file" name="file">
+        <button id="button" type="submit" name="submit">Upload</button>
     </div>
-
 </body>
+
+<script>
+    document.getElementById("button").addEventListener("click", function () {
+        let file = document.getElementById("file").files[0];
+        console.log(file);
+        let formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("test", "test");
+        // fetch('localhost:3002/oauth', { method: "POST", body: formData });
+        // fetch('localhost:3002/oauth', { method: "GET" });
+        var oReq = new XMLHttpRequest();
+        oReq.onreadystatechange = function () {
+            console.log(this.responseText);
+            let json = JSON.parse(this.responseText);
+            let docInfo = {};
+            docInfo.coverDealer = json.COVER_DEALER[0];
+            docInfo.coverDate = json.COVER_DATE[0];
+            docInfo.coverContact = json.COVER_CONTACT[0];
+            docInfo.coverContactFirstName = json.COVER_CONTACT_FIRSTNAME[1];
+            docInfo.coverModel = json.COVER_MODEL_1[1];
+            docInfo.coverDealerName = json.COVER_DEALER_NAME[1];
+            docInfo.coverSales = json.COVER_SALES[0];
+
+            docInfo.fpDealer = json.FIRST_PAGE_DEALER[0];
+            docInfo.customerName = json.CUSTOMER_NAME[1];
+            docInfo.customerDate = json.CUSTOMER_DATE[3];
+            docInfo.customerStreet = json.CUSTOMER_STREET[0];
+            docInfo.customerStreet2 = json.CUSTOMER_STREET2[0];
+            docInfo.refNum = json.OUR_REF[2];
+            docInfo.customerContact = json.CUSTOMER_CONTACT[1];
+            docInfo.customerPhone = json.CUSTOMER_PHONE[3];
+
+            docInfo.quoteSub = json.QUOTE_SUBMISSION[0];
+            docInfo.modelNumber = json.MODEL_NO[0];
+            docInfo.warranty = json.WARRANTY[0];
+            docInfo.investment = json.INVESTMENT[0];
+            docInfo.tfsProgram = json.TFS_PROGRAM[0];
+            docInfo.termsDesc = json.TERMS_DESC[0];
+            docInfo.tersDescMid = json.TERMS_DESC_MID1[0];
+            docInfo.tersDescEnd = json.TERMS_DESC_END[0];
+            docInfo.price = json['PRICE/NETPRICE'][0].concat(', ', json['PRICE/NETPRICE'][1])
+            console.log(docInfo);
+        };
+        oReq.open("POST", "https://util.esm.datadecisions.net/api/v1/toyota_quote");
+        // Don't set the Content-Type. 
+        // Allow the browser to generate it from the formData object
+        // oReq.setRequestHeader("Content-Type", "multipart/form-data");
+        oReq.send(formData);
+    });
+</script>
+
+
+<!-- <script>
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("file", fileupload.files[0]);
+        await fetch('http://localhost:3002/api/v1/test', {
+            method: "POST",
+            body: formData,
+            headers: {
+                Accept: 'application/json',
+            },
+        }).then(res => {
+            console.log("1", res)
+            res.text();
+        }).then(res => {
+            console.log("2", res)
+        });
+    }
+</script> -->
+
 
 </html>

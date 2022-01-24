@@ -9,11 +9,10 @@ from lxml import etree
 
 dictionary = {}
 bookmark_data = []
-base_path = 'files'
 saved_data = 'data'
-complete_saved_data = os.path.join(saved_data, 'bookmarks_data.txt')
+complete_saved_data = os.path.join(saved_data, 'bookmarks_data.json')
 regex_for_price = '<w:t>(\\$[0-9]+,[0-9]+)</w:t>'
-path = glob.glob("I:\\PycharmProjects\\data_extractor\\files\\*.docx")
+path = glob.glob("files\\*.docx")
 
 
 def bookmark_data_to_text():

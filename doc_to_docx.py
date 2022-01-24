@@ -5,10 +5,11 @@ import win32com.client as win32
 from win32com.client import constants
 from bookmark_data_to_text import bookmark_data_to_text
 
-
+# path = 'files'
 # Create list of paths to .doc files
 paths = glob('I:\\PycharmProjects\\data_extractor\\files\\*.doc',
              recursive=True)
+
 
 for files in paths:
     if files.endswith('.doc'):
